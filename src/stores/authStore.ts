@@ -1,6 +1,7 @@
 import {
   FacebookAuthProvider,
   GoogleAuthProvider,
+  OAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
   signOut,
@@ -37,6 +38,11 @@ const faceBookSignIn = () => {
   return signInWithPopup(auth, provider);
 };
 
+const microsoftSignIn = () => {
+  const provider = new OAuthProvider('microsoft.com');
+  return signInWithPopup(auth, provider);
+}
+
 onAuthStateChanged(auth, (firebaseUser) => {
   if (firebaseUser) {
     useAuthStore.getState().login({
@@ -50,4 +56,4 @@ onAuthStateChanged(auth, (firebaseUser) => {
   }
 });
 
-export { faceBookSignIn, googleSignIn, logOut, useAuthStore };
+export { faceBookSignIn, googleSignIn, logOut, microsoftSignIn, useAuthStore };

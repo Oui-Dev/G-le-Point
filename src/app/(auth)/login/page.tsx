@@ -6,16 +6,28 @@ import { redirectTo } from "@/lib/actions";
 import {
   faceBookSignIn,
   googleSignIn,
+  microsoftSignIn,
   useAuthStore,
 } from "@/stores/authStore";
 import { FirebaseUser } from "@/types/index";
 import { browserLocalPersistence, setPersistence } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Login = () => {
   const { isAuthenticated, login } = useAuthStore();
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -51,8 +63,10 @@ const Login = () => {
         addToDbIfNewUser(firebaseUser);
         redirectTo("/map");
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error : string | any) {
+      if(error.code === 'auth/account-exists-with-different-credential'){
+        setErrorMessage('Un compte avec cette adresse email existe déjà, veuillez vous connecter avec un autre fournisseur de connexion');
+      }
     }
   };
 
@@ -71,10 +85,35 @@ const Login = () => {
         addToDbIfNewUser(firebaseUser);
         redirectTo("/map");
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: string | any) {
+      if(error.code === 'auth/account-exists-with-different-credential'){
+        setErrorMessage('Un compte avec cette adresse email existe déjà, veuillez vous connecter avec un autre fournisseur de connexion');
+      }
     }
   };
+
+  const handleSignInMicrosoft = async () => {
+    try {
+      await setPersistence(auth, browserLocalPersistence);
+      const authUser = await microsoftSignIn();
+      console.log(authUser);
+      if (authUser && authUser.user) {
+        const firebaseUser: FirebaseUser = {
+          uid: authUser.user.uid,
+          displayName: authUser.user.displayName,
+          email: authUser.user.email,
+          photoURL: authUser.user.photoURL,
+        };
+        login(firebaseUser);
+        addToDbIfNewUser(firebaseUser);
+        redirectTo("/map");
+      }
+    } catch (error: string | any) {
+      if(error.code === 'auth/account-exists-with-different-credential'){
+        setErrorMessage('Un compte avec cette adresse email existe déjà, veuillez vous connecter avec un autre fournisseur de connexion');
+      }
+    }
+  }
 
   return (
     <main className="h-[90vh] flex justify-center items-center flex-col gap-24">
@@ -113,8 +152,23 @@ const Login = () => {
               className="ml-2"
             />
           </Button>
+          <Button variant="outline" size="sm" onClick={handleSignInMicrosoft}>
+            Se connecter avec
+            <Image
+              src="/images/microsoft-icon.svg"
+              height={18}
+              width={18}
+              alt="Microsoft Icon"
+              className="ml-2"
+            />
+          </Button>
         </CardContent>
       </Card>
+      {
+        errorMessage && <div className={`absolute top-4 right-4 h-6 w-auto bg-glp-green-600 p-5 rounded-sm flex justify-center items-center text-white`}>
+          {errorMessage}
+          </div>
+      }
     </main>
   );
 };

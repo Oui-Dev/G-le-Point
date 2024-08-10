@@ -165,7 +165,7 @@ const Login = () => {
         </CardContent>
       </Card>
       {
-        errorMessage && <div className={`absolute top-4 right-4 h-6 w-auto bg-glp-green-600 p-5 rounded-sm flex justify-center items-center text-white`}>
+        errorMessage && <div className={`absolute top-4 right-4 h-auto w-48 bg-glp-green-600 p-5 rounded-sm flex justify-center items-center text-white`}>
           {errorMessage}
           </div>
       }

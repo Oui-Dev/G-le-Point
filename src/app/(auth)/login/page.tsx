@@ -63,7 +63,7 @@ const Login = () => {
         addToDbIfNewUser(firebaseUser);
         redirectTo("/map");
       }
-    } catch (error : string | any) {
+    } catch (error : Error | any) {
       if(error.code === 'auth/account-exists-with-different-credential'){
         setErrorMessage('Un compte avec cette adresse email existe déjà, veuillez vous connecter avec un autre fournisseur de connexion');
       }
@@ -85,7 +85,7 @@ const Login = () => {
         addToDbIfNewUser(firebaseUser);
         redirectTo("/map");
       }
-    } catch (error: string | any) {
+    } catch (error: Error | any) {
       if(error.code === 'auth/account-exists-with-different-credential'){
         setErrorMessage('Un compte avec cette adresse email existe déjà, veuillez vous connecter avec un autre fournisseur de connexion');
       }
@@ -108,7 +108,7 @@ const Login = () => {
         addToDbIfNewUser(firebaseUser);
         redirectTo("/map");
       }
-    } catch (error: string | any) {
+    } catch (error: Error | any) {
       if(error.code === 'auth/account-exists-with-different-credential'){
         setErrorMessage('Un compte avec cette adresse email existe déjà, veuillez vous connecter avec un autre fournisseur de connexion');
       }

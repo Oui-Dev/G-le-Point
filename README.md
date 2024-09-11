@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# G’Le Point - Projet de Fin d'Études
 
-## Getting Started
+**G’Le Point** est une plateforme collaborative de cartographie interactive dédiée à la découverte et au partage de lieux méconnus, tels que des panoramas cachés, des établissements peu médiatisés, ou des sentiers de randonnée uniques. Ce projet vise à renforcer la connexion entre les utilisateurs en leur permettant de partager leurs découvertes locales tout en explorant celles des autres membres de la communauté.
 
-First, run the development server:
+## 📍 Lien vers le projet
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[Accéder à G’Le Point](https://glepoint.fr/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📋 Description du projet
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+L'idée derrière **G’Le Point** est de faciliter la mise en lumière de lieux peu connus grâce à une plateforme collaborative et interactive. Les utilisateurs peuvent :
+- Partager des lieux intéressants qu'ils ont découverts.
+- Explorer des points d'intérêt mis en avant par d'autres membres de la communauté.
+- Accéder à des **Super Points** promus par nos partenaires via des options premium.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Le projet utilise une architecture moderne et performante pour offrir une expérience fluide. Des fonctionnalités de **ludification** sont également intégrées pour enrichir l'interaction utilisateur, créant une expérience amusante et engageante.
 
-## Learn More
+## 🚀 Fonctionnalités
 
-To learn more about Next.js, take a look at the following resources:
+- **Partage de lieux** : Les utilisateurs peuvent ajouter des lieux méconnus ou intéressants sur la carte.
+- **Exploration communautaire** : Accès à une carte interactive où chacun peut découvrir des points d'intérêt ajoutés par d'autres utilisateurs.
+- **Super Points** : Fonctionnalité premium permettant aux partenaires de promouvoir des lieux spécifiques.
+- **Ludification** : Ajout d'éléments de jeu pour rendre l'expérience plus immersive et engageante.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Technologies Utilisées
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Next.js** : [Next.js](https://nextjs.org/) pour le rendu côté serveur (SSR) et la génération de pages statiques (SSG).
+- **TypeScript** : Pour assurer un code robuste et typé.
+- **Mapbox** : Pour la gestion des cartes interactives, permettant aux utilisateurs d'ajouter et explorer des points d'intérêt.
+- **Firebase** :
+  - **Firestore** : Base de données NoSQL en temps réel pour stocker les points d'intérêt et les utilisateurs.
+  - **Firebase Authentication** : Gestion de l'authentification sécurisée des utilisateurs.
+  - **Firebase Hosting** : Pour l'hébergement de l'application.
+- **Tailwind CSS** : Pour une gestion efficace des styles et du design responsive.
 
-## Deploy on Vercel
+## ⚙️ Installation et Configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Cloner le dépôt.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Accéder au répertoire du projet.
+
+3. Installer les dépendances.
+
+4. Ajouter les informations de configuration Firebase dans un fichier `.env.local` en vous basant sur le fichier `.env.example`.
+
+5. Démarrer l'application.
+
+## 📚 Documentation
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Firebase Documentation](https://firebase.google.com/docs)
+- [Mapbox Documentation](https://docs.mapbox.com/)
+
+## 📧 Contact
+
+Pour toute question, vous pouvez me contacter à : [team.glepoint@gmail.com](mailto:team.glepoint@gmail.com)
